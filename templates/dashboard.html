@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Dashboard
+{% endblock %}
+
+{% block content%}
+
+<!-- ======= Main Content ======= -->
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h1>Dashboard</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item active">Dashboard</li>
+            </ol>
+        </nav>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <!-- looping --->
+        {% if fruit_collection|length > 0 %}
+        {% for fruit in fruit_collection%}
+        <div class="col">
+            <div class="card">
+                <img src="{{url_for('static', filename='uploads/'+fruit.image)}}" class="card-img-top"
+                    alt="gambar-buah" />
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <h5 class="card-title">{{fruit.name}}</h5>
+                        <h5 class="card-title" style="color: brown;">Rp.{{fruit.price}}</h5>
+                    </div>
+                    <p class="card-text">
+                        {{fruit.description}}
+                    </p>
+                </div>
+            </div>
+        </div>
+        </tr>
+        {% endfor %}
+        {% else %}
+        <div class="alert alert-success" role="alert">
+            Tidak ada Data!
+        </div>
+        {% endif %}
+        <!-- looping --->
+    </div>
+</main>
+<!-- ======= End of Main Content ======= -->
+
+{% endblock %}
